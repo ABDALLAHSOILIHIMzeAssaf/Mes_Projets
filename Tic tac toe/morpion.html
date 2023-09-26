@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo_2.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="morpion.css">
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Tic Tac Toe</h1>
+        <div class="names">
+            <input type="text" id="player1Name" placeholder="Nom du joueur 1">
+            <input type="text" id="player2Name" placeholder="Nom du joueur 2">
+        </div>
+        <div class="board">
+            <div class="cell A" onclick="makeMove(0)"></div>
+            <div class="cell B" onclick="makeMove(1)"></div>
+            <div class="cell C" onclick="makeMove(2)"></div>
+            <div class="cell D" onclick="makeMove(3)"></div>
+            <div class="cell E" onclick="makeMove(4)"></div>
+            <div class="cell F" onclick="makeMove(5)"></div>
+            <div class="cell G" onclick="makeMove(6)"></div>
+            <div class="cell H" onclick="makeMove(7)"></div>
+            <div class="cell I" onclick="makeMove(8)"></div>
+        </div>
+        <div class="scores">
+            <p><span id="player1"></span> : <span id="score1">0</span></p>
+            <p><span id="player2"></span> : <span id="score2">0</span></p>
+        </div>
+        <p id="message"></p>
+        <div class="buttons">
+            <button id="replayBtn" onclick="replayGame()">Rejouer</button>
+            <button id="resetBtn" onclick="resetGame()">Réinitialiser</button>
+        </div>
+    </div>
+    <script src="morpion.js"></script>
+</body>
+</html>
