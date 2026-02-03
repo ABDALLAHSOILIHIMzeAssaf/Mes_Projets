@@ -1,0 +1,46 @@
+# Créé par Mzé ABDALLAH SOILII, le 08/11/2024 en Python 3.2
+
+# Cette classe contient tout les information des gens qui sont dans le lycée
+class Perso:
+    # Cette fonction à pour but de contenir les infos de chaque personne
+    def __init__(self, n, p, s, d_n, nat='Français', sex='M', c):
+        self.nom = n # Son nom
+        self.prenom = p # Son prenom
+        self.statut = s # Son statut qui porte au lycée
+        self.date_naissance = d_n # Sa date de naissance
+        self.natinalite = nat # Sa nationalité
+        self.sexe = sex # Son sexe
+        self.classe = c # La/les classe(s) dont l'éleve est ou le professeur enseigne
+
+    def infos(self):
+        print("Voici les infos de", self.nom, self.prenom)
+        print("Statue: ", self.statut)
+        print("Date de naissance: ", self.date_naissance)
+        print("Nationalité: ", self.natinalite)
+        print("Âgé de: ", self.age(), "ans")
+
+        if self.majeur():
+            print("Cette personne est majeur")
+        else:
+            print("Cette personne est mineur")
+
+    def age(self):
+        ages = int(self.date_naissance[6:10])
+        calc_age = 2024 - ages
+        return calc_age
+
+    def majeur(self):
+        if self.age() >= 18:
+            return True
+        else:
+            return False
+        return
+
+
+# Création des personnages avec leurs informations personnel
+perso1 = Perso("Karparian", "David", "Professeur", "10/09/1988", )
+perso2 = Perso("Clara", "Yves", "Professeur", "10/09/1967", sex='F')
+perso3 = Perso("Morata", "Camille", "eleve", "10/09/2006", "Espagnole")
+perso4 = Perso("Maxence", "Bourgo", "eleve", "10/09/2007")
+perso5 = Perso("Alice", "Victor", "s_cantine", "10/09/2009", "Germany", "F")
+
