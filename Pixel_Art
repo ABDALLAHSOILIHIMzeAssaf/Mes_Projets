@@ -1,0 +1,537 @@
+# Ce programme est réaliser par ABDALLAH SOILIHI Mzé
+from tkinter import *
+from random import*
+
+# On crée la fenêtre principale avec une taille 600X400
+fenetre = Tk()
+fenetre.title("Pixel Art (ABDALLAH SOILIHI Mze)")
+fenetre.config(bg="pink", width=600, height=400)
+
+# Canevas pour le tableau de pixel
+canvas_pixel_art = Canvas(fenetre, width=450, height=377, bg="lightgray")
+canvas_pixel_art.place(x=10, y=10)
+
+# Canevas pour les boutons et entrées
+canvas_parametre = Canvas(fenetre, width=100, height=377, bg="lightblue")
+canvas_parametre.place(x=485, y=10)
+
+# Dimensions de la grille
+hauteur = 18
+hauteur_tintin = 12
+Largeur = 21
+Largeur_tintin = 17
+# Choix aléatoire d'un chiffre entre 1, 2 et 3
+defi_actuel = randint(1, 3)
+# Compteur de nombre de tentative
+compteur_essai = 0
+
+# Cette fonction a pour but de vérifier si le(s) résultat(s) que le joueur à mis sont vrai ou fausse
+# Et compte le nombre de fois que le joueur à essayer
+def valider(event = None):
+    # On déclare que on utilise la variable globale compteur_essai
+    global compteur_essai
+    # Augmentez le compteur d'essai de 1
+    compteur_essai = compteur_essai + 1
+
+    # Récuperation de valeur mis par de joueur dans le(e) entrée(s)
+    recup_valeur1 = Entree_Couleur1.get()
+    recup_valeur2 = Entree_Couleur2.get()
+    recup_valeur3 = Entree_Couleur3.get()
+    recup_valeur4 = Entree_Couleur4.get()
+    recup_valeur5 = Entree_Couleur5.get()
+    recup_valeur6 = Entree_Couleur6.get()
+    recup_valeur7 = Entree_Couleur7.get()
+    recup_valeur8 = Entree_Couleur8.get()
+    recup_valeur9 = Entree_Couleur9.get()
+    recup_valeur10 = Entree_Couleur10.get()
+    recup_valeur11 = Entree_Couleur11.get()
+    recup_valeur12 = Entree_Couleur12.get()
+    recup_valeur13 = Entree_Couleur13.get()
+    recup_valeur14 = Entree_Couleur14.get()
+    recup_valeur15 = Entree_Couleur15.get()
+    recup_valeur16 = Entree_Couleur16.get()
+
+    # Vérification si les résultats sont vrai pour l'image d'oiseau
+    if defi_actuel == 1:
+        if recup_valeur1 == "0":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = oiseau[ligne][colonne]
+                    if oiseau[ligne][colonne] == 0 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='green')
+
+        if recup_valeur12 == "1":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = oiseau[ligne][colonne]
+                    if oiseau[ligne][colonne] == 1 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='black')
+
+        if recup_valeur3 == "2":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = oiseau[ligne][colonne]
+                    if oiseau[ligne][colonne] == 2 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='brown')
+
+        if recup_valeur13 == "3":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = oiseau[ligne][colonne]
+                    if oiseau[ligne][colonne] == 3 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='lightgray')
+
+        if recup_valeur9 == "4":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = oiseau[ligne][colonne]
+                    if oiseau[ligne][colonne] == 4 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='gray')
+
+        if recup_valeur5 == "5":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = oiseau[ligne][colonne]
+                    if oiseau[ligne][colonne] == 5 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='red')
+
+        if recup_valeur8 == "6":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = oiseau[ligne][colonne]
+                    if oiseau[ligne][colonne] == 6 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='pink')
+
+        if recup_valeur16 == "7":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = oiseau[ligne][colonne]
+                    if oiseau[ligne][colonne] == 7 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='white')
+        # Mettez à jour le texte du compteur d'essai
+        canvas_parametre.itemconfig(CompteurDeEssai, text=str(compteur_essai))
+
+    # Vérification si les résultats sont vrai pour l'image drapeau_comores
+    elif defi_actuel == 2:
+        if recup_valeur1 == "0":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = drapeau_comores[ligne][colonne]
+                    if drapeau_comores[ligne][colonne] == 0 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='green')
+
+        if recup_valeur6 == "1":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = drapeau_comores[ligne][colonne]
+                    if drapeau_comores[ligne][colonne] == 1 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='yellow')
+
+
+        if recup_valeur16 == "2":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = drapeau_comores[ligne][colonne]
+                    if drapeau_comores[ligne][colonne] == 2 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='white')
+
+        if recup_valeur5 == "3":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = drapeau_comores[ligne][colonne]
+                    if drapeau_comores[ligne][colonne] == 3 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='red')
+
+        if recup_valeur14 == "4":
+            for ligne in range(20):
+                for colonne in range(21):
+                    x = (colonne + 0.8) * Largeur
+                    y = (ligne + 1) * hauteur
+                    pixel = drapeau_comores[ligne][colonne]
+                    if drapeau_comores[ligne][colonne] == 4 :
+                        canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2,fill='blue')
+        canvas_parametre.itemconfig(CompteurDeEssai, text=str(compteur_essai))
+
+    # Vérification si les résultats sont vrai pour l'image tintin
+    else:
+        if recup_valeur16 == "0":
+            for ligne in range(32):
+                for colonne in range(28):
+                    x = (colonne + 1) * Largeur_tintin
+                    y = (ligne + 1) * hauteur_tintin
+                    pixel = tintin[ligne][colonne]
+                    if tintin[ligne][colonne] == 0 :
+                        canvas_pixel_art.create_rectangle(x-Largeur_tintin//2,y-hauteur_tintin//2,x+Largeur_tintin//2,y+hauteur_tintin//2,fill='white')
+
+        if recup_valeur12 == "1":
+            for ligne in range(32):
+                for colonne in range(28):
+                    x = (colonne + 1) * Largeur_tintin
+                    y = (ligne + 1) * hauteur_tintin
+                    pixel = tintin[ligne][colonne]
+                    if tintin[ligne][colonne] == 1 :
+                        canvas_pixel_art.create_rectangle(x-Largeur_tintin//2,y-hauteur_tintin//2,x+Largeur_tintin//2,y+hauteur_tintin//2,fill='black')
+
+        if recup_valeur3 == "2":
+            for ligne in range(32):
+                for colonne in range(28):
+                    x = (colonne + 1) * Largeur_tintin
+                    y = (ligne + 1) * hauteur_tintin
+                    pixel = tintin[ligne][colonne]
+                    if tintin[ligne][colonne] == 2 :
+                        canvas_pixel_art.create_rectangle(x-Largeur_tintin//2,y-hauteur_tintin//2,x+Largeur_tintin//2,y+hauteur_tintin//2,fill='brown')
+
+        if recup_valeur13 == "3":
+            for ligne in range(32):
+                for colonne in range(28):
+                    x = (colonne + 1) * Largeur_tintin
+                    y = (ligne + 1) * hauteur_tintin
+                    pixel = tintin[ligne][colonne]
+                    if tintin[ligne][colonne] == 3 :
+                        canvas_pixel_art.create_rectangle(x-Largeur_tintin//2,y-hauteur_tintin//2,x+Largeur_tintin//2,y+hauteur_tintin//2,fill='lightgray')
+
+        if recup_valeur9 == "4":
+            for ligne in range(32):
+                for colonne in range(28):
+                    x = (colonne + 1) * Largeur_tintin
+                    y = (ligne + 1) * hauteur_tintin
+                    pixel = tintin[ligne][colonne]
+                    if tintin[ligne][colonne] == 4 :
+                        canvas_pixel_art.create_rectangle(x-Largeur_tintin//2,y-hauteur_tintin//2,x+Largeur_tintin//2,y+hauteur_tintin//2,fill='gray')
+
+        if recup_valeur4 == "5":
+            for ligne in range(32):
+                for colonne in range(28):
+                    x = (colonne + 1) * Largeur_tintin
+                    y = (ligne + 1) * hauteur_tintin
+                    pixel = tintin[ligne][colonne]
+                    if tintin[ligne][colonne] == 5 :
+                        canvas_pixel_art.create_rectangle(x-Largeur_tintin//2,y-hauteur_tintin//2,x+Largeur_tintin//2,y+hauteur_tintin//2,fill='lightsalmon')
+
+        if recup_valeur2 == "6":
+            for ligne in range(32):
+                for colonne in range(28):
+                    x = (colonne + 1) * Largeur_tintin
+                    y = (ligne + 1) * hauteur_tintin
+                    pixel = tintin[ligne][colonne]
+                    if tintin[ligne][colonne] == 6 :
+                        canvas_pixel_art.create_rectangle(x-Largeur_tintin//2,y-hauteur_tintin//2,x+Largeur_tintin//2,y+hauteur_tintin//2,fill='lightcoral')
+
+        if recup_valeur15 == "7":
+            for ligne in range(32):
+                for colonne in range(28):
+                    x = (colonne + 1) * Largeur_tintin
+                    y = (ligne + 1) * hauteur_tintin
+                    pixel = tintin[ligne][colonne]
+                    if tintin[ligne][colonne] == 7 :
+                        canvas_pixel_art.create_rectangle(x-Largeur_tintin//2,y-hauteur_tintin//2,x+Largeur_tintin//2,y+hauteur_tintin//2,fill='purple')
+        canvas_parametre.itemconfig(CompteurDeEssai, text=str(compteur_essai))
+
+# Cette fonction choisie une des tableaux et l'affiche
+# Supprime le tableau présent dans le canvas_pixel_art
+def nouvelle_partie():
+    global defi_actuel, compteur_essai
+    compteur_essai = 0
+
+    # Supprimer le contenu des champs de saisie
+    for entry in [Entree_Couleur1, Entree_Couleur2, Entree_Couleur3, Entree_Couleur4,
+                  Entree_Couleur5, Entree_Couleur6, Entree_Couleur7, Entree_Couleur8,
+                  Entree_Couleur9, Entree_Couleur10, Entree_Couleur11, Entree_Couleur12,
+                  Entree_Couleur13, Entree_Couleur14, Entree_Couleur15, Entree_Couleur16]:
+        entry.delete(0, 'end')
+    # Effacer le contenu du canevas
+    canvas_pixel_art.delete("all")
+    # Choisir un nouveau defi_actuel au hasard (1, 2 ou 3)
+    defi_actuel = randint(1, 3)
+    # Afficher la nouvelle partie
+    afficher_tableau_initial()
+    # Mettre à jour le texte du compteur d'essai
+    canvas_parametre.itemconfig(CompteurDeEssai, text=str(compteur_essai))
+
+# Cette fonction a pour rôle de réinitialiser la partie
+def renitialiser():
+    global compteur_essai
+    compteur_essai = compteur_essai * 0
+    for entry in [Entree_Couleur1, Entree_Couleur2, Entree_Couleur3, Entree_Couleur4,
+                  Entree_Couleur5, Entree_Couleur6, Entree_Couleur7, Entree_Couleur8,
+                  Entree_Couleur9, Entree_Couleur10, Entree_Couleur11, Entree_Couleur12,
+                  Entree_Couleur13, Entree_Couleur14, Entree_Couleur15, Entree_Couleur16]:
+        entry.delete(0, 'end')  # Efface le contenu des entrée
+
+    canvas_pixel_art.delete("all")  # Efface tout dans le canevas
+    afficher_tableau_initial()  # Réaffiche la table initiale
+    # Mettez à jour le texte du compteur d'essai
+    canvas_parametre.itemconfig(CompteurDeEssai, text=str(compteur_essai))
+
+# Ce fonction réaffiche le tableau sans les couleur en appuient le bouton rénover
+def afficher_tableau_initial():
+    # table oiseau et table drapeau_comores
+    if defi_actuel == 1:
+        for ligne in range(20):
+            for colonne in range(21):
+                x = (colonne + 0.8) * Largeur
+                y = (ligne + 1) * hauteur
+                pixel = oiseau[ligne][colonne]
+                canvas_pixel_art.create_text(x, y, text=str(pixel))
+                canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2)
+    elif defi_actuel == 2:
+        for ligne in range(20):
+            for colonne in range (21):
+                x = (colonne + 0.8)* Largeur
+                y = (ligne + 1)* hauteur
+                pixel = drapeau_comores[ligne][colonne]
+                canvas_pixel_art.create_text(x,y,text = str(pixel))
+                canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2)
+    else:
+        # table tintin
+        for ligne in range(32):
+            for colonne in range(28):
+                x = (colonne + 1) * Largeur_tintin
+                y = (ligne + 1) * hauteur_tintin
+                pixel = tintin[ligne][colonne]
+                canvas_pixel_art.create_text(x, y, text=str(pixel))
+                canvas_pixel_art.create_rectangle(x-Largeur_tintin//2,y-hauteur_tintin//2,x+Largeur_tintin//2,y+hauteur_tintin//2)
+
+# Création d'une fênetre pour une page d'aide
+def aide():
+    # Crée une nouvelle fenêtre pour la page d'aide
+    page_aide = Tk()
+    page_aide.title("Page d'aide")
+    page_aide.config(bg="white", width=500, height=200)
+    # Crée un canevas pour qu'on puisse afficher le texte d'aide
+    canvas_aide = Canvas(page_aide, width=500, height=200, bg="lightblue")
+    canvas_aide.place(x=0, y=0)
+    # Texte d'explication du jeu
+    texte_explication = (
+        "                                  Bienvenue dans le jeu Pixel Art!\n\n"
+        "1. Utilisez les champs de saisie pour spécifier les couleurs associées\n    aux chiffres dans la grille.\n"
+        "2. Appuyez sur le bouton 'Valider' ou 'Entrer' pour afficher la grille avec\n    les couleurs sélectionnées.\n"
+        "3. Appuyez sur le bouton 'Rénover' pour réinitialiser la grille et les couleurs.\n"
+        "4. Appuyer sur le bouton 'Nouveau défi pour' pour avoir une nouvelle image.\n\n"
+        "⚠️: Quand vous appliquez la consigne '2' et qu'il n'y a pas de couleur(s)\n       qui s'affiche c'est à dire que ce que vous avez saisie est faux.")
+
+    # Affichage du texte dans le canvas_aide
+    canvas_aide.create_text(250, 100, text=texte_explication, font=("Ariale", 10, "bold"))
+    page_aide.mainloop()
+
+# La table "oiseau"
+oiseau =[[0, 0, 0, 0, 0, 0, 1, 2, 2, 1, 0, 1, 2, 2, 1, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 1, 2, 1, 1, 1, 1, 1, 2, 1, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 1, 2, 1, 3, 4, 3, 4, 4, 1, 2, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 2, 2, 2, 1, 3, 4, 3, 4, 1, 2, 2, 1, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 2, 2, 2, 2, 1, 3, 3, 1, 2, 2, 2, 1, 0, 0, 0, 0],
+            [0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 1, 0, 0, 0],
+            [0, 1, 1, 1, 2, 2, 7, 2, 2, 2, 2, 2, 2, 2, 7, 2, 2, 1, 1, 1, 0],
+            [0, 0, 1, 1, 2, 7, 5, 7, 2, 2, 2, 2, 2, 7, 5, 7, 2, 1, 1, 0, 0],
+            [1, 1, 1, 2, 2, 2, 7, 2, 2, 1, 1, 1, 2, 2, 7, 2, 2, 2, 1, 1, 1],
+            [0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0],
+            [0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0],
+            [1, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 2, 2, 2, 2, 2, 2, 1],
+            [1, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 2, 2, 2, 1],
+            [1, 2, 2, 1, 2, 6, 6, 6, 7, 6, 7, 6, 7, 6, 6, 6, 2, 1, 2, 2, 1],
+            [1, 2, 1, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 1, 2, 1],
+            [1, 1, 2, 2, 6, 6, 6, 7, 6, 7, 6, 7, 6, 7, 6, 6, 6, 2, 2, 1, 1],
+            [0, 1, 1, 2, 1, 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 1, 1, 2, 1, 1, 0],
+            [0, 0, 1, 1, 2, 2, 1, 6, 6, 6, 6, 6, 6, 6, 1, 2, 2, 1, 1, 0, 0],
+            [0, 0, 0, 1, 2, 0, 2, 1, 6, 6, 6, 6, 6, 1, 2, 0, 2, 1, 0, 0, 0],
+            [0, 0, 0, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 0, 0, 0]]
+
+# La table "drapeau des comores"
+drapeau_comores =[[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                [0, 0, 0, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ],
+                [0, 0, 0, 2, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ],
+                [0, 0, 2, 2, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ],
+                [0, 0, 2, 2, 0, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ],
+                [0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ],
+                [0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 ],
+                [0, 0, 2, 2, 0, 2, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 ],
+                [0, 0, 2, 2, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 ],
+                [0, 0, 0, 2, 0, 2, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 ],
+                [0, 0, 0, 0, 2, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 ],
+                [0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 ],
+                [0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 ],
+                [0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 ],
+                [0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 ],
+                [0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 ]]
+
+# La table "tintin"
+tintin =[[0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 3, 3, 3, 3, 3, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 3, 4, 4, 4, 3, 3, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 1, 5, 5, 2, 2, 2, 5, 5, 5, 2, 2, 2, 2, 1, 4, 4, 4, 3, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2, 2, 2, 1, 4, 4, 3, 3, 0, 0, 0],
+             [0, 0, 0, 0, 1, 1, 5, 5, 5, 5, 5, 1, 1, 5, 5, 5, 5, 2, 2, 2, 1, 4, 4, 4, 3, 0, 0, 0],
+             [0, 0, 0, 0, 1, 5, 1, 5, 5, 5, 1, 5, 5, 1, 5, 5, 5, 5, 2, 2, 2, 1, 4, 4, 3, 3, 0, 0],
+             [0, 0, 0, 0, 1, 5, 5, 5, 5, 5, 5, 5, 5, 1, 5, 5, 5, 5, 2, 2, 2, 1, 4, 4, 4, 3, 3, 0],
+             [0, 0, 0, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2, 2, 2, 1, 4, 4, 4, 3, 3, 0],
+             [0, 0, 0, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2, 2, 2, 2, 1, 4, 4, 4, 4, 3, 0],
+             [0, 0, 0, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2, 2, 2, 1, 1, 4, 4, 4, 4, 3, 3],
+             [0, 0, 0, 1, 5, 5, 1, 5, 5, 5, 5, 5, 5, 1, 5, 5, 5, 2, 2, 1, 5, 6, 1, 4, 4, 4, 3, 3],
+             [0, 0, 0, 1, 5, 5, 1, 5, 5, 5, 5, 5, 5, 1, 5, 5, 5, 2, 2, 6, 5, 6, 1, 4, 4, 4, 3, 3],
+             [0, 0, 0, 1, 5, 5, 5, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 6, 1, 4, 4, 4, 3, 3],
+             [0, 0, 0, 1, 6, 5, 5, 1, 5, 5, 5, 5, 5, 6, 6, 6, 6, 5, 5, 5, 1, 6, 1, 4, 4, 4, 3, 3],
+             [0, 0, 0, 1, 6, 6, 5, 2, 1, 1, 5, 5, 6, 6, 6, 6, 6, 5, 5, 5, 6, 6, 1, 4, 4, 4, 3, 3],
+             [0, 0, 0, 1, 6, 6, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 5, 5, 1, 6, 6, 1, 4, 4, 4, 3, 3, 0],
+             [0, 0, 0, 1, 6, 6, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 5, 6, 1, 1, 4, 4, 4, 3, 3, 0, 0],
+             [0, 0, 0, 0, 1, 5, 5, 5, 2, 5, 5, 5, 1, 5, 5, 5, 5, 5, 6, 1, 4, 4, 4, 3, 3, 0, 0, 0],
+             [0, 0, 0, 0, 1, 5, 5, 5, 5, 1, 1, 1, 5, 5, 5, 5, 5, 5, 6, 1, 4, 4, 4, 4, 3, 3, 0, 0],
+             [0, 0, 0, 0, 0, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 1, 4, 4, 4, 4, 3, 3, 0, 0],
+             [0, 0, 0, 0, 0, 0, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 1, 0, 1, 4, 4, 4, 4, 4, 3, 3],
+             [0, 0, 0, 0, 0, 0, 0, 1, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 1, 0, 0, 1, 1, 1, 4, 4, 4, 4],
+             [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 6, 6, 6, 1, 0, 0, 0, 1, 7, 7, 1, 1, 4, 4],
+             [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 6, 6, 6, 6, 6, 1, 0, 0, 0, 1, 1, 7, 7, 7, 7, 1, 1],
+             [0, 0, 0, 0, 1, 1, 7, 7, 1, 0, 1, 1, 6, 6, 1, 1, 0, 0, 0, 1, 7, 7, 7, 7, 7, 7, 7, 7],
+             [0, 0, 1, 1, 7, 7, 7, 7, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+             [0, 1, 7, 7, 7, 7, 7, 7, 1, 0, 1, 7, 1, 0, 0, 0, 0, 1, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+             [1, 7, 7, 7, 7, 7, 7, 7, 1, 1, 1, 1, 7, 1, 0, 0, 1, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+             [1, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 1, 1, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]]
+
+# C'est le bouton valide qui vérifie si ce que on a mis dans les entrées
+bouton_valider = Button(canvas_parametre, text="Valider", command = valider)
+bouton_valider.config(bg="pink", width=11)
+bouton_valider.place(x=9, y=5)
+# Ligne de séparation
+canvas_parametre.create_line(10, 40, 95, 40, fill="black")
+
+# Les Entry qui permet aux joueurs de saisir les chiffres qui leur semble correcte
+Entree_Couleur1 = Entry(canvas_parametre)
+Entree_Couleur1.config(bg="green", width=4)
+Entree_Couleur1.place(x=20, y=45)
+
+Entree_Couleur2 = Entry(canvas_parametre)
+Entree_Couleur2.config(bg="lightcoral", width=4)
+Entree_Couleur2.place(x=20, y=75)
+
+Entree_Couleur3 = Entry(canvas_parametre)
+Entree_Couleur3.config(bg="brown", width=4)
+Entree_Couleur3.place(x=20, y=105)
+
+Entree_Couleur4 = Entry(canvas_parametre)
+Entree_Couleur4.config(bg="lightsalmon", width=4)
+Entree_Couleur4.place(x=20, y=135)
+
+Entree_Couleur5 = Entry(canvas_parametre)
+Entree_Couleur5.config(bg="red", width=4)
+Entree_Couleur5.place(x=20, y=165)
+
+Entree_Couleur6 = Entry(canvas_parametre)
+Entree_Couleur6.config(bg="yellow", width=4)
+Entree_Couleur6.place(x=20, y=195)
+
+Entree_Couleur7 = Entry(canvas_parametre)
+Entree_Couleur7.config(bg="lightgoldenrodyellow", width=4)
+Entree_Couleur7.place(x=20, y=225)
+
+Entree_Couleur8 = Entry(canvas_parametre)
+Entree_Couleur8.config(bg="lightpink", width=4)
+Entree_Couleur8.place(x=20, y=255)
+
+Entree_Couleur9 = Entry(canvas_parametre)
+Entree_Couleur9.config(bg="gray", width=4)
+Entree_Couleur9.place(x=60, y=45)
+
+Entree_Couleur10 = Entry(canvas_parametre)
+Entree_Couleur10.config(bg="aquamarine", width=4)
+Entree_Couleur10.place(x=60, y=75)
+
+Entree_Couleur11 = Entry(canvas_parametre)
+Entree_Couleur11.config(bg="magenta", width=4)
+Entree_Couleur11.place(x=60, y=105)
+
+Entree_Couleur12 = Entry(canvas_parametre)
+Entree_Couleur12.config(bg="black", fg="white", width=4)
+Entree_Couleur12.place(x=60, y=135)
+
+Entree_Couleur13 = Entry(canvas_parametre)
+Entree_Couleur13.config(bg="lightgray", width=4)
+Entree_Couleur13.place(x=60, y=165)
+
+Entree_Couleur14 = Entry(canvas_parametre)
+Entree_Couleur14.config(bg="blue", width=4)
+Entree_Couleur14.place(x=60, y=195)
+
+Entree_Couleur15 = Entry(canvas_parametre)
+Entree_Couleur15.config(bg="purple", fg="white", width=4)
+Entree_Couleur15.place(x=60, y=225)
+
+Entree_Couleur16 = Entry(canvas_parametre)
+Entree_Couleur16.config(bg="white", width=4)
+Entree_Couleur16.place(x=60, y=255)
+# Ligne de séparation
+canvas_parametre.create_line(10, 280, 95, 280, fill="black")
+
+# Un texte de canvas qui affiche "Nombre d'essai:" dans le canvas_parametre
+TexteDuCompteur = canvas_parametre.create_text(55, 290, text="Nombre d'essai: ")
+CompteurDeEssai = canvas_parametre.create_text(55, 307, text="0")
+# Cette bouton génére une nouvelle image
+bouton_nouvelle_partie = Button(canvas_parametre, text="Nouveau défi", command=nouvelle_partie)
+bouton_nouvelle_partie.config(bg="pink", width=11)
+bouton_nouvelle_partie.place(x=9, y=320)
+# Cette bouton réinitialise la partie
+bouton_reinitialiser = Button(canvas_parametre, text="Rénover", command=renitialiser)
+bouton_reinitialiser.config(bg="pink", width=7)
+bouton_reinitialiser.place(x=7, y=350)
+# Cette bouton à pour rôle d'aider les joueur qui connais pas le jeu en expliquant comment on joue
+bouton_aide = Button(canvas_parametre, text=" ❓ ", command=aide)
+bouton_aide.config(bg="red", fg="white", width=3)
+bouton_aide.place(x=67, y=350)
+
+# Ces conditions nous pemez d'afficher le taleau du début du jeu
+if defi_actuel == 1: # table oiseau
+    for ligne in range(20):
+        for colonne in range(21):
+            x = (colonne + 0.8) * Largeur
+            y = (ligne + 1) * hauteur
+            pixel = oiseau[ligne][colonne]
+            canvas_pixel_art.create_text(x,y,text = str(pixel))
+            canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2)
+elif defi_actuel == 2: # table drapeau_comores
+    for ligne in range(20):
+        for colonne in range (21):
+            x = (colonne + 0.8)* Largeur
+            y = (ligne + 1)* hauteur
+            pixel = drapeau_comores[ligne][colonne]
+            canvas_pixel_art.create_text(x,y,text = str(pixel))
+            canvas_pixel_art.create_rectangle(x-Largeur//2,y-hauteur//2,x+Largeur//2,y+hauteur//2)
+else: # table tintin
+    for ligne in range(32):
+        for colonne in range(28):
+            x = (colonne + 1) * Largeur_tintin
+            y = (ligne + 1) * hauteur_tintin
+            pixel = tintin[ligne][colonne]
+            canvas_pixel_art.create_text(x, y, text=str(pixel))
+            canvas_pixel_art.create_rectangle(x-Largeur_tintin//2,y-hauteur_tintin//2,x+Largeur_tintin//2,y+hauteur_tintin//2)
+
+# Cet bout de code à pour rôle d'éxecuter la fonction Valider si on appuie sur le bouton ENTRER
+fenetre.bind("<Return>", valider)
+fenetre.mainloop()
