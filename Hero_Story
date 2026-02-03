@@ -1,0 +1,45 @@
+#Programme réalisé par ABDALLAH SOILIHI Mzé
+
+print("Bienvenue dans l'histoire dont vous êtes le héros !")
+print()
+
+heros = input("Choisissez un nom pour votre personnage : ")
+
+print()
+print("Il était une fois un héros nommé", heros, ", il s'est retrouvé à un carrefour dans une forêt dense.")
+print(heros, "avait le choix entre deux chemins :")
+
+print()
+chemins = input("1. Prendre le chemin de gauche\n2. Prendre le chemin de droite\nChoisissez 1 ou 2 : ")
+
+print()
+if chemins == "1" or chemins == "gauche" or chemins == "Gauche" or chemins == "GAUCHE":
+    print("Vous avez choisi de prendre le chemin de gauche.")
+    print("En marchant, vous trouvez un vieux trésor enterré.")
+    
+    tresor = input("Voulez-vous ouvrir le trésor ? (Oui/Non) : ")
+    
+    if tresor == "oui" or tresor == "Oui" or tresor == "OUI":
+        print("Le trésor est rempli de richesses ! Vous êtes devenu riche et célèbre.")
+    elif tresor == "non" or tresor == "Non" or tresor == "NON":
+        print("Vous décidez de laisser le trésor en paix et de continuer votre aventure.")
+    else:
+        print("Le choix que vous avez fait n'est pas valide, donc l'aventure s'arrête ici.")
+
+elif chemins == "2" or chemins == "droite" or chemins == "Dorite" or chemins == "DROITE":
+    print("Vous avez choisi de prendre le chemin de droite.")
+    print("Le chemin vous emmène vers un pont qui flotte au-dessus d'une rivière agitée, comme si la rivière était en colère.")
+    
+    pont = input("Voulez-vous traverser le pont ou retourner en arrière ? (Traverser/Reculer) : ")
+    
+    if pont == "Traverser" or pont == "traverser" or pont == "TRAVERSER":
+        print("Vous traversez le pont avec succès et continuez votre aventure de l'autre côté.")
+    elif pont == "Reculer" or pont == "RECULER" or pont == "reculer":
+        print("Vous choisissez de faire demi-tour et d'aller voir ce qui se passe ailleurs.")
+    else:
+        print("Le choix que vous avez fait n'est pas valide, donc l'aventure s'arrête ici.")
+
+else:
+    print("Le choix que vous avez fait n'est pas valide, donc l'aventure s'arrête ici.")
+
+print("Merci d'avoir joué !")
