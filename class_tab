@@ -1,0 +1,32 @@
+# Définition d'une classe Tab
+class Tab:
+    def __init__(self,t,v=[]):
+        self.taille=t
+        # liste de base trop longue : on garde le début par tranchage :
+        self.valeurs=v[:self.taille]
+        # liste de base trop courte : on allonge par des None :
+        while len(self.valeurs)<self.taille:
+            self.valeurs.append(None)
+
+    def insert(self,val,position):
+        if not (position in range(1,self.taille+1)):
+            print("Le tableau contient %d valeurs : saisissez une position entre 1 et %d" % (self.taille,self.taille))
+        elif position>1 and self.valeurs[position-1]==None:
+            print("Veillez insérer la nouvelle valeur parmi les valeurs existantes sans créer de trou")
+        else:
+            self.valeurs.insert(position-1,val)
+            self.valeurs.pop()
+
+    def supprime(self,position):
+        if position in range(1,self.taille+1):
+            del self.valeurs[position-1]
+            self.valeurs.append(None)
+        else:
+            print("Le tableau contient %d valeurs : saisissez une position entre 1 et %d" % (self.taille,self.taille))
+
+
+# Déclaration d'une instance de la classe Tab :
+t1=Tab(5)
+t2=Tab(3,[1,2,3,4,5,6])
+t3=Tab(6,[1,2,3,4])
+t4=Tab(4,[1,2,3,4])
