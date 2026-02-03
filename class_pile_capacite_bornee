@@ -1,0 +1,33 @@
+# Créé par mabdallahs, le 15/11/2024 en Python 3.2
+class Pile_capaciter_bornee:
+    def __init__(self, v=[], capacite=10):
+        self.capaciter = capacite
+        self.valeurs = v
+        self.taille=len(self.valeurs)
+
+
+    def empile(self,n):
+        if self.taille <= self.capaciter:
+            self.valeurs.append(n)
+        else:
+            print("La pile est pleine")
+
+
+    def depile(self):
+        n=self.valeurs
+        if n == None:
+            print("La pile est vide")
+        else:
+            n=self.valeurs.pop()
+            self.taille=len(self.valeurs)
+        return n
+
+    def pile_vide(self):
+        return self.valeurs == None
+
+
+
+    def sommet(self):
+       return self.valeurs[-1]
+
+
