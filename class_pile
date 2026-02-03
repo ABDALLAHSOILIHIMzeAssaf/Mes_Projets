@@ -1,0 +1,37 @@
+# Créé par mabdallahs, le 15/11/2024 en Python 3.2
+
+# Définition d'une classe Pile
+class Pile:
+    def __init__(self,v=[]):
+        self.valeurs=v
+        self.taille=len(self.valeurs)
+
+    def empile(self,n):
+        self.valeurs.append(n)
+        self.taille=len(self.valeurs)
+
+    def depile(self):
+        n=self.valeurs
+        if n == None:
+            print("La pile est vide")
+        else:
+            n=self.valeurs.pop()
+            self.taille=len(self.valeurs)
+        return n
+
+    def pile_vide(self):
+        return self.valeurs == None
+
+
+
+    def sommet(self):
+       return self.valeurs[-1]
+
+liste_pile = Pile(v=[1,2,34,87,])
+print("Voici le liste de pile: \n", liste_pile.valeurs)
+print("Empiler:\n")
+Empiler = liste_pile.empile(67)
+print("Voici la nouvelle liste de la pile: ", liste_pile.valeurs)
+print("Dépiler: ")
+Depiler = liste_pile.depile()
+print("Voici la nouvelle liste de la pile: ", Depiler)
