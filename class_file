@@ -1,0 +1,41 @@
+# Créé par mabdallahs, le 15/11/2024 en Python 3.2
+
+# Définition d'une classe File
+class File:
+    def __init__(self,v=100*[None]):
+        self.valeurs=v
+        self.sortie=0
+        self.entree=0
+        """
+        partie du code à compléter
+        """
+
+    def enfile(self,n):
+        pass
+        """
+        partie du code à compléter
+        """
+
+    def defile(self):
+        pass
+        """
+        partie du code à compléter
+        """
+
+    def file_vide(self):
+        pass
+        """
+        partie du code à compléter
+        """
+
+    def taille(self):
+        pass
+        """
+        partie du code à compléter
+        """
+
+    def affiche(self):
+        pass
+        """
+        partie du code à compléter
+        """
