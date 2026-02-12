@@ -1,374 +1,436 @@
-# Programme réaliser par ABDALLAH SOILIHI Mzé
-from tkinter import *
-from random import choice
+#=============================================================================#
+#                           Projet de terminale NSI
+#=============================================================================#
+# Thème : Dames
+# Version 1
+# Date : 06/05/2025
+# Tâche de chacun :
+#
+# Mzé (Chef de projet):
+# - création du plateau
+# - création & placement des pions
+# - INTERACTION AVEC LES JOUEURS
+# - BASCULE J1 à J2
+# - Sauvegarde de jeu
+# Patrick :
+# - Programme principal
+# - INTERACTION AVEC LES JOUEURS
+# - STRUCTURE DU PLATEAU
+# - Manger les pions adverses
+# - Dame
+# - Dépacements des dames
+# Nathanan :
+# - création & placement des pions
+# - IDENTIFICATION DES CASES
+# - BASCULE J1 à J2
+# - Interface module turtle
+#
+# Fonctions réalisées par cette version du programme :
+# -
 
-# Création de la fenêtre principale
-fenetre = Tk()
-fenetre.title("Projet 3: Avatar")
-fenetre.config(bg='pink', width=800, height=400)
 
-# Création du canevas
-canevas = Canvas(fenetre)
-canevas.config(bg='green', width=400, height=360)
-canevas.place(x=5, y=10)
+from turtle import *
+from string import ascii_uppercase
 
-def changer_forme_tete(): # Cette définition a pour fonction de changer la forme de la tête
-    global Tete
-    # Cette condition supprime la tête qui existante déjà
-    if Tete:
-        canevas.delete(Tete)
-    # Ici on creé une variable qui choisie aléatoirement une nouvelle forme de tête
-    nouvelle_forme_tete = choice(formes_tete)()
-    # Cette variable met à jour la variable globale Tete
-    Tete = nouvelle_forme_tete
+#=============================================================================#
+                        # PROGRAMME PRINCIPAL #
+#=============================================================================#
 
-def forme_tete_1(): # Fonction pour la première forme de tête
-    return canevas.create_oval(100, 100, 300, 300, fill="pink")
-def forme_tete_2(): # Fonction pour la deuxième forme de tête
-    return canevas.create_rectangle(120, 120, 280, 280, fill="pink")
-def forme_tete_3(): # Fonction pour la troisième forme de tête
-    return canevas.create_oval(120, 100, 280, 300, fill="lightblue")
-def forme_tete_4(): # Fonction pour la quatrième forme de tête
-    return canevas.create_polygon(200, 100, 120, 250, 280, 250, fill="pink")
-def forme_tete_5(): # Fonction pour la cinquième forme de tête
-    return canevas.create_arc(120, 100, 280, 300, start=0, extent=180, fill="lightgreen")
-def forme_tete_6(): # Fonction pour la sixième forme de tête
-    return canevas.create_rectangle(120, 100, 280, 300, outline="purple", width=5)
+speed(0)
+hideturtle()
+title("Jeu de Dames")
+penup()
+color(0, 0, 0)
+goto(-132,326)
+write("Jeu de Dames", font=("Arial Unicode Ms", 36, "normal"))
+pendown()
+setup(800,800)
+x = -300
+y = 300
+up()
+goto(x, y)
+down()
 
-# On a creé une liste "formes_tete" qui ajouter les nouvelles formes de tête à la liste
-formes_tete = [forme_tete_3, forme_tete_4, forme_tete_5, forme_tete_6]
+#=============================================================================#
+                        # CREATION DU PLATEAU #
+#=============================================================================#
 
-def sourcils_normaux_gauche(): # Ici on definie des fonctions pour les différentes formes de sourcils (gauche)
-    return canevas.create_line(140, 120, 170, 120, width=5, fill="black")
-def sourcils_epais_gauche():
-    return canevas.create_line(140, 120, 170, 130, width=8, fill="brown")
-def sourcils_fins_gauche():
-    return canevas.create_line(140, 120, 170, 110, width=3, fill="black")
-def sourcils_normaux_droite():# Ici on definie des fonctions pour les différentes formes de sourcils (droite)
-    return canevas.create_line(230, 120, 260, 120, width=5, fill="black")
-def sourcils_epais_droite():
-    return canevas.create_line(230, 120, 260, 130, width=8, fill="brown")
-def sourcils_fins_droite():
-    return canevas.create_line(230, 120, 260, 110, width=3, fill="black")
-# On liste les formes de sourcils pour le côté gauche et droit
-formes_sourcils_gauche = [sourcils_normaux_gauche, sourcils_epais_gauche, sourcils_fins_gauche]
-formes_sourcils_droite = [sourcils_normaux_droite, sourcils_epais_droite, sourcils_fins_droite]
+for b in range(10):
+    for j in range(10):
+        up()
+        goto(x + j * 60, y - b * 60)
+        down()
 
-# Variables globales pour les sourcils
-Sourcil_G = None
-Sourcil_D = None
+        if (b + j) % 2 == 0:
+            begin_fill()
+            color("gray")
+        else:
+            color("black")
 
-def changer_forme_sourcils(): # Cette définition a pour fonction de changer la forme des sourcils
-    global Sourcil_G, Sourcil_D
-    # Cette condition supprime les sourcils qui existe déjà
-    if Sourcil_G:
-        canevas.delete(Sourcil_G)
-    if Sourcil_D:
-        canevas.delete(Sourcil_D)
-    # Ces deux variable choisie aléatoirement une nouvelle forme de sourcils pour chaque oeil
-    nouvelle_forme_gauche = choice(formes_sourcils_gauche)()
-    nouvelle_forme_droite = choice(formes_sourcils_droite)()
-    # On met à jour les variables globales
-    Sourcil_G = nouvelle_forme_gauche
-    Sourcil_D = nouvelle_forme_droite
+        for i in range(4):
+            forward(60)
+            right(90)
+        forward(60)
 
-def couleur_blanc(): # Fonction pour changer la couleur de la tête
-    canevas.itemconfig(Tete, fill='white')
-def couleur_noir():
-    canevas.itemconfig(Tete, fill='gray')
-def couleur_beige():
-    canevas.itemconfig(Tete, fill='beige')
-def couleur_rose():
-    canevas.itemconfig(Tete, fill='pink')
-def couleur_rouge():
-    canevas.itemconfig(Tete, fill='red')
-def couleur_bleu():
-    canevas.itemconfig(Tete, fill='blue')
+        if (b + j) % 2 == 0:
+            end_fill()
 
-# Fonction pour déplacer les sourcils vers le haut et le bas
-def deplacer_sourcils_haut():
-    canevas.move(Sourcil_G, 0, -5)
-    canevas.move(Sourcil_D, 0, -5)
-def deplacer_sourcils_bas():
-    canevas.move(Sourcil_G, 0, 5)
-    canevas.move(Sourcil_D, 0, 5)
+    up()
+    goto(x, y - (60 * b))
+    down()
 
-# Fonction pour déplacer les yeux vers le haut, le bas, à droite et àgauche
-def deplacer_yeux_haut():
-    canevas.move(Oeil_G, 0, -5)
-    canevas.move(Oeil_D, 0, -5)
-def deplacer_yeux_bas():
-    canevas.move(Oeil_G, 0, 5)
-    canevas.move(Oeil_D, 0, 5)
-def deplacer_yeux_droite():
-    canevas.move(Oeil_G, 5, 0)
-    canevas.move(Oeil_D, 5, 0)
-def deplacer_yeux_gauche():
-    canevas.move(Oeil_G, -5, 0)
-    canevas.move(Oeil_D, -5, 0)
+#=============================================================================#
+                     # CREATION & PLACEMENT DES PIONS #
+#=============================================================================#
 
-# Fonction pour écarter et rapprocher les yeux
-def ecarter_yeux():
-    canevas.move(Oeil_G, -5, 0)
-    canevas.move(Oeil_D, 5, 0)
-def rapprocher_yeux():
-    canevas.move(Oeil_G, 5, 0)
-    canevas.move(Oeil_D, -5, 0)
+def dessiner_pion(x, y, symbole, couleur):
+    up()
+    goto(x + 10, y - 60 + 5)
+    down()
+    color(couleur)
+    write(symbole, font=("ArialUnicode MS", 36, "normal"))
 
-def Changer_Accessoire(): # Fonction pour changer les accessoires
-    nombre = int(Btn_Accessoire.cget('text'))
-    nombre = nombre + 1
-    if nombre > 6:
-        nombre = 1
-    if nombre % 2 == 0:
-        Btn_Accessoire.config(fg='white', text=str(nombre), height=1, width=3)
+for ligne in range(10):
+    for colonne in range(10):
+        if (ligne + colonne) % 2 == 0:
+            x_case = x + colonne * 60
+            y_case = y - ligne * 60
+
+            if ligne < 4:
+                dessiner_pion(x_case, y_case, "\u26C0", "black")
+            elif ligne > 5:
+                dessiner_pion(x_case, y_case, "\u26C2", "red")
+
+#=============================================================================#
+                        # INTERACTION AVEC LES JOUEURS #
+#=============================================================================#
+
+# Création d'une variable qui va nous permettre
+# de sauvegarder la position d'un pion que le joueur a selectionné
+case_selectionnee = None
+
+def deplacement_pion(x, y):
+    global case_selectionnee
+
+    print(x, y)
+
+    if x < -300 or x > 300 or y < -300 or y > 300:
+        print("HORS PLATEAU")
+        return
+
+    colonne = int((x + 300) // 60)
+    ligne = int((300 - y) // 60)
+
+    lettres_colonnes = "ABCDEFGHIJ"
+    case = print(lettres_colonnes[colonne], ligne)
+    print("Tu as cliqué dans la case :", case)
+
+    if case_selectionnee is None:      # Si aucun pion n'est sélectionné
+        pion = plateau[ligne][colonne]
+        if pion in [1, 2, 3, 4]:  # Si la case contient un pion
+            print("Pion sélectionné")
+            case_selectionnee = (ligne, colonne)
+        else:
+            print("Pas de pion ici")
+
     else:
-        Btn_Accessoire.config(fg='white', text=str(nombre), height=1, width=3)
+        ligne_depart, colonne_depart = case_selectionnee
+        pion = plateau[ligne_depart][colonne_depart]
 
-def reinitialiser(): # Fonction pour réinitialiser l'avatar
-    global Tete, Oeil_G, Oeil_D, Bouche, Sourcil_G, Sourcil_D
-    canevas.delete(Tete, Oeil_G, Oeil_D, Bouche, Sourcil_G, Sourcil_D)
-    Tete = canevas.create_oval(100, 100, 300, 300, fill="pink")
-    Oeil_G = canevas.create_oval(130, 150, 170, 210, fill="blue")
-    Oeil_D = canevas.create_oval(230, 150, 270, 210, fill="blue")
-    Bouche = canevas.create_rectangle(160, 260, 240, 280, fill="purple")
-    Sourcil_G = canevas.create_line(140, 120, 170, 120, width=5, fill="black")
-    Sourcil_D = canevas.create_line(230, 120, 260, 120, width=5, fill="black")
-    Btn_Accessoire.config(text='1')
+        deplacement_valide = False
 
-def changer_couleur_bg_avatar(): # Fonction pour changer le couleur du canevas
-    # Choisir une couleur aléatoire de la liste
-    couleur1 = choice(["blue", "green", "brown", "gray", "red", "green"])
-    # Changer la couleur de fond du canevas
-    canevas.config(bg=couleur1)
+        # Si le pion sélectionné est rouge (1), il peut avancer vers le bas en diagonale
+        if pion == 1:
+            if ligne == ligne_depart + 1 and abs(colonne - colonne_depart) == 1:
+                deplacement_valide = True
+            elif abs(ligne - ligne_depart) == 2 and abs(colonne - colonne_depart) == 2:
+                ligne_mangee = (ligne + ligne_depart) // 2
+                colonne_mangee = (colonne + colonne_depart) // 2
+                pion_mange = plateau[ligne_mangee][colonne_mangee]
 
-def changer_couleur_yeux(): # Ajouter cette fonction pour changer la couleur des yeux
-    nouvelle_couleur = choice(["blue", "green", "brown", "gray", "red"])
-    canevas.itemconfig(Oeil_G, fill=nouvelle_couleur)
-    canevas.itemconfig(Oeil_D, fill=nouvelle_couleur)
+                if pion_mange == 2 and plateau[ligne][colonne] == 0:
+                    deplacement_valide = True
+                    plateau[ligne_mangee][colonne_mangee] = 0  # Mange le pion
+                    # Effacer visuellement le pion mangé
+                    x_mange = -300 + colonne_mangee * 60
+                    y_mange = 300 - ligne_mangee * 60
+                    color("gray" if (ligne_mangee + colonne_mangee) % 2 == 0 else "black")
+                    up()
+                    goto(x_mange, y_mange)
+                    down()
+                    begin_fill()
+                    for _ in range(4):
+                        forward(60)
+                        right(90)
+                    end_fill()
 
-def changer_forme_bouche(): # Fonction pour changer la forme de la bouche
-    global Bouche
-    # Supprimer la bouche existante
-    canevas.delete(Bouche)
-    # Choisir aléatoirement une nouvelle forme de bouche
-    nouvelle_forme_bouche = choice(formes_bouche)()
-    # Mettre à jour la variable globale Bouche
-    Bouche = nouvelle_forme_bouche
+        # Si c'est un pion noir (2), il peut avancer vers le haut en diagonale
+        elif pion == 2:
+            if ligne == ligne_depart - 1 and abs(colonne - colonne_depart) == 1:
+                deplacement_valide = True
+            elif abs(ligne - ligne_depart) == 2 and abs(colonne - colonne_depart) == 2:
+                ligne_mangee = (ligne + ligne_depart) // 2
+                colonne_mangee = (colonne + colonne_depart) // 2
+                pion_mange = plateau[ligne_mangee][colonne_mangee]
 
-def forme_bouche_content(): # Fonction pour la bouche en forme content
-    return canevas.create_rectangle(160, 260, 240, 280, fill="purple")
-def forme_bouche_fachee(): # Fonction pour la bouche en forme fâchée
-    return canevas.create_polygon(160, 260, 200, 240, 240, 260, fill="red")
-def forme_bouche_choquee(): # Fonction pour la bouche en forme choquée
-    return canevas.create_arc(160, 260, 240, 280, start=45, extent=90, fill="orange")
-def forme_bouche_triste(): # Fonction pour la bouche en forme triste
-    return canevas.create_arc(160, 260, 240, 280, start=180, extent=180, style=ARC, outline="blue", width=5)
-def forme_bouche_joyeuse(): # Fonction pour la bouche en forme joyeuse
-    return canevas.create_polygon(160, 260, 200, 280, 240, 260, fill="yellow")
-# Ajouter les nouvelles formes de bouche à la liste
-formes_bouche = [forme_bouche_content, forme_bouche_fachee, forme_bouche_choquee, forme_bouche_triste, forme_bouche_joyeuse]
+                if pion_mange == 1 and plateau[ligne][colonne] == 0:
+                    deplacement_valide = True
+                    plateau[ligne_mangee][colonne_mangee] = 0  # Mange le pion
+                    # Effacer visuellement le pion mangé
+                    x_mange = -300 + colonne_mangee * 60
+                    y_mange = 300 - ligne_mangee * 60
+                    color("gray" if (ligne_mangee + colonne_mangee) % 2 == 0 else "black")
+                    up()
+                    goto(x_mange, y_mange)
+                    down()
+                    begin_fill()
+                    for _ in range(4):
+                        forward(60)
+                        right(90)
+                    end_fill()
 
-def Afficher_Nom_Avatar(): # Cette définition nous permez d'affiche le Nom de L'avatar
-    Nom_Avatar = Entree.get() # On récupere ce que l'utilisateur a saisie dans le variable "Entree"
-    Nom = Label(fenetre, text=Nom_Avatar) # On cree un label qui nous permetra d'affiche le nom dans le canevas
-    Nom.config(bg='black', fg='white', font=('Arial', 12, 'bold'))
-    Nom.place(x=180, y=20)
+        # Si c’est une dame rouge
+        elif pion == 3:
+            delta_ligne = ligne - ligne_depart
+            delta_colonne = colonne - colonne_depart
 
-def forme_yeux_triste(): # Fonction pour la première forme d'oeil (triste)
-    return canevas.create_arc(130, 150, 170, 210, start=180, extent=180, style=ARC, outline="blue", width=5)
-def forme_yeux_joyeux(): # Fonction pour la deuxième forme d'oeil (joyeux)
-    return canevas.create_polygon(130, 150, 150, 140, 170, 150, fill="yellow")
-def forme_yeux_surpris(): # Fonction pour la troisième forme d'oeil (surpris)
-    return canevas.create_arc(130, 150, 170, 210, start=0, extent=180, style=ARC, outline="black", width=5)
-def forme_yeux_enerve(): # Fonction pour la quatrième forme d'oeil (énervé)
-    return canevas.create_polygon(130, 150, 170, 150, 150, 170, fill="red")
-def forme_yeux_choque(): # Fonction pour la cinquième forme d'oeil (choqué)
-    return canevas.create_oval(130, 150, 170, 210, fill="white", outline="black", width=2)
-# Ajouter les nouvelles formes d'yeux à la liste
-formes_yeux = [forme_yeux_triste, forme_yeux_joyeux, forme_yeux_surpris, forme_yeux_enerve, forme_yeux_choque]
+            if abs(delta_ligne) == abs(delta_colonne):  # diagonale
+                direction_ligne = 1 if delta_ligne > 0 else -1
+                direction_colonne = 1 if delta_colonne > 0 else -1
 
-# Variable globale pour les yeux
-Yeux_G = None
-Yeux_D = None
+                ligne_temp = ligne_depart + direction_ligne
+                colonne_temp = colonne_depart + direction_colonne
+                pions_adverses = 0
+                ligne_mangee = colonne_mangee = None
 
-def changer_forme_yeux(): # Fonction pour changer la forme des yeux
-    global Yeux_G, Yeux_D
-    # Supprimer les yeux existants
-    if Yeux_G:
-        canevas.delete(Yeux_G)
-    if Yeux_D:
-        canevas.delete(Yeux_D)
-    # Choisir aléatoirement une nouvelle forme d'yeux pour chaque oeil
-    nouvelle_forme = choice(formes_yeux)()
-    # Mettre à jour les variables globales pour les deux yeux
-    Yeux_G = nouvelle_forme
-    Yeux_D = nouvelle_forme
+                while ligne_temp != ligne and colonne_temp != colonne:
+                    pion_temp = plateau[ligne_temp][colonne_temp]
+                    if pion_temp != 0:
+                        if pion_temp in [2, 4]:  # ennemi
+                            pions_adverses += 1
+                            ligne_mangee = ligne_temp
+                            colonne_mangee = colonne_temp
+                        else:  # pion allié
+                            pions_adverses = 2
+                            break
+                    ligne_temp += direction_ligne
+                    colonne_temp += direction_colonne
 
-def oreilles_elephant_droite(): # Fonction pour les oreilles d'éléphant (droite)
-    return canevas.create_polygon(250, 80, 320, 50, 290, 140, fill="gray")
-def oreilles_elephant_gauche(): # Fonction pour les oreilles d'éléphant (gauche)
-    return canevas.create_polygon(110, 80, 40, 50, 70, 140, fill="gray")
-def pommettes(): # Fonction pour les pommettes
-    return canevas.create_oval(180, 180, 220, 220, fill="pink")
-def chapeau(): # Fonction pour le chapeau
-    return canevas.create_polygon(120, 50, 280, 50, 220, 140, fill="red")
-def bonnet_noel(): # Fonction pour le bonnet de Noël
-    canevas.create_polygon(120, 50, 280, 50, 220, 140, fill="red")
-    return canevas.create_polygon(220, 140, 180, 140, 200, 90, fill="white")
-# Ajouter ces nouvelles formes à la liste d'accessoires
-accessoires = [oreilles_elephant_droite, oreilles_elephant_gauche, pommettes, chapeau, bonnet_noel]
-accessoire_actuel = None
+                if pions_adverses == 0 and plateau[ligne][colonne] == 0:
+                    deplacement_valide = True
+                elif pions_adverses == 1 and plateau[ligne][colonne] == 0:
+                    deplacement_valide = True
+                    plateau[ligne_mangee][colonne_mangee] = 0
 
-def Changer_Accessoire(): # Modifier la fonction Compteur_Accessoire pour utiliser la liste d'accessoires
-    global accessoire_actuel
-    nombre = int(Btn_Accessoire.cget('text'))
-    nombre = nombre + 1
-    if nombre > len(accessoires):
-        nombre = 1
-    if accessoire_actuel:
-        canevas.delete(accessoire_actuel)
-    accessoire_actuel = accessoires[nombre - 1]()
-    Btn_Accessoire.config(fg='white', text=str(nombre), height=1, width=3)
+                    # Efface visuellement le pion mangé
+                    x_mange = -300 + colonne_mangee * 60
+                    y_mange = 300 - ligne_mangee * 60
+                    color("gray" if (ligne_mangee + colonne_mangee) % 2 == 0 else "black")
+                    up()
+                    goto(x_mange, y_mange)
+                    down()
+                    begin_fill()
+                    for _ in range(4):
+                        forward(60)
+                        right(90)
+                    end_fill()
+
+# Si c’est une dame noire
+        elif pion == 4:
+            delta_ligne = ligne - ligne_depart
+            delta_colonne = colonne - colonne_depart
+
+            if abs(delta_ligne) == abs(delta_colonne):  # diagonale
+                direction_ligne = 1 if delta_ligne > 0 else -1
+                direction_colonne = 1 if delta_colonne > 0 else -1
+
+                ligne_temp = ligne_depart + direction_ligne
+                colonne_temp = colonne_depart + direction_colonne
+                pions_adverses = 0
+                ligne_mangee = colonne_mangee = None
+
+                while ligne_temp != ligne and colonne_temp != colonne:
+                    pion_temp = plateau[ligne_temp][colonne_temp]
+                    if pion_temp != 0:
+                        if pion_temp in [1, 3]:  # ennemi
+                            pions_adverses += 1
+                            ligne_mangee = ligne_temp
+                            colonne_mangee = colonne_temp
+                        else:
+                            pions_adverses = 2
+                            break
+                    ligne_temp += direction_ligne
+                    colonne_temp += direction_colonne
+
+                if pions_adverses == 0 and plateau[ligne][colonne] == 0:
+                    deplacement_valide = True
+                elif pions_adverses == 1 and plateau[ligne][colonne] == 0:
+                    deplacement_valide = True
+                    plateau[ligne_mangee][colonne_mangee] = 0
+
+                    # Efface visuellement le pion mangé
+                    x_mange = -300 + colonne_mangee * 60
+                    y_mange = 300 - ligne_mangee * 60
+                    color("gray" if (ligne_mangee + colonne_mangee) % 2 == 0 else "black")
+                    up()
+                    goto(x_mange, y_mange)
+                    down()
+                    begin_fill()
+                    for _ in range(4):
+                        forward(60)
+                        right(90)
+                    end_fill()
 
 
-# Création des widgets pour le changement de couleur de la peau
-Couleur_Slime = Label(fenetre)
-Couleur_Slime.config(bg='black', fg='white', text="Couleur de peau de l'avatar", width=23, height=1, font=('Arial', 9, 'bold'))
-Couleur_Slime.place(x=420, y=10)
+        if deplacement_valide:
+            if plateau[ligne][colonne] == 0:
+                print("Déplacement accepté")
+                plateau[ligne][colonne] = pion
+                plateau[ligne_depart][colonne_depart] = 0
 
-# Création des boutons pour changer la couleur de la peau
-Btn_blanc = Button(fenetre, command=couleur_blanc)
-Btn_blanc.config(bg='white', fg='black', text="Blanc", width=5, height=1)
-Btn_blanc.place(x=420, y=40)
+                # Promotion avant dessin
+                if pion == 1 and ligne == 9:
+                    plateau[ligne][colonne] = 3
+                elif pion == 2 and ligne == 0:
+                    plateau[ligne][colonne] = 4
 
-Btn_noir = Button(fenetre, command=couleur_noir)
-Btn_noir.config(bg='gray', fg='white', text="Gris", width=5, height=1)
-Btn_noir.place(x=480, y=40)
+                nouveau_pion = plateau[ligne][colonne]
+                x_case = -300 + colonne * 60
+                y_case = 300 - ligne * 60
 
-Btn_beige = Button(fenetre, command=couleur_beige)
-Btn_beige.config(bg='beige', fg='black', text="Beige", width=5, height=1)
-Btn_beige.place(x=540, y=40)
+                if nouveau_pion == 1:
+                    dessiner_pion(x_case, y_case, "\u26C2", "black")   # pion noir
+                elif nouveau_pion == 2:
+                    dessiner_pion(x_case, y_case, "\u26C0", "red") # pion rouge
+                elif nouveau_pion == 3:
+                    dessiner_pion(x_case, y_case, "\u26C3", "black")   # dame noire
+                elif nouveau_pion == 4:
+                    dessiner_pion(x_case, y_case, "\u26C1", "red") # dame rouge
 
-Btn_rose = Button(fenetre, command=couleur_rose)
-Btn_rose.config(bg='pink', fg='white', text="Rose", width=5, height=1)
-Btn_rose.place(x=420, y=70)
 
-Btn_rouge = Button(fenetre, command=couleur_rouge)
-Btn_rouge.config(bg='red', fg='black', text="Rouge", width=5, height=1)
-Btn_rouge.place(x=480, y=70)
 
-Btn_bleu = Button(fenetre, command=couleur_bleu)
-Btn_bleu.config(bg='blue', fg='white', text="Bleu", width=5, height=1)
-Btn_bleu.place(x=540, y=70)
+                # Effacer la case d'origine
+                x_old = -300 + colonne_depart * 60
+                y_old = 300 - ligne_depart * 60
+                color("gray" if (ligne_depart + colonne_depart) % 2 == 0 else "black")
+                up()
+                goto(x_old, y_old)
+                down()
+                begin_fill()
+                for _ in range(4):
+                    forward(60)
+                    right(90)
+                end_fill()
 
-# Création des widgets pour la forme des sourcils
-Forme_Sourcils = Label(fenetre)
-Forme_Sourcils.config(text='Forme des sourcils', fg='white', bg='black', width=23, height=1, font=('Arial', 9, 'bold'))
-Forme_Sourcils.place(x=620, y=10)
+            else:
+                print("La case est occupée")
+        else:
+            print("Déplacement non autorisé")
 
-# Création des boutons pour déplacer les sourcils
-Btn_Sourcils_Haut = Button(fenetre, text="↑", command=deplacer_sourcils_haut)
-Btn_Sourcils_Haut.config(bg='orange', fg='white', width=10, height=1)
-Btn_Sourcils_Haut.place(x=620, y=40)
+        # Vider la sélection
+        case_selectionnee = None
 
-Btn_Sourcils_Bas = Button(fenetre, text=" ↓", command=deplacer_sourcils_bas)
-Btn_Sourcils_Bas.config(bg='orange', fg='white', width=10, height=1)
-Btn_Sourcils_Bas.place(x=707, y=40)
+#=============================================================================#
+                        # IDENTIFICATION DES CASES #
+#=============================================================================#
 
-Btn_Forme_Sourcils = Button(fenetre, text="Change la forme sourcils", command=changer_forme_sourcils)
-Btn_Forme_Sourcils.config(bg='orange', fg='white', width=23, height=1)
-Btn_Forme_Sourcils.place(x=620, y=70)
+for i in range(10):
+    penup()
+    color(0, 0, 0)
+    goto(-315, 260 - i * 60)
+    write(str(9 - i))
+    pendown()
 
-# Création d'un widget pour la position des yeux
-Position_Yeux = Label(fenetre)
-Position_Yeux.config(text='Position des yeux', bg='black', fg='white', width=23, height=1, font=('Arial', 9, 'bold'))
-Position_Yeux.place(x=420, y=110)
+for i in range(10):
+    penup()
+    color(0, 0, 0)
+    goto(-270 + i * 60, -320)
+    write(ascii_uppercase[i])
+    pendown()
 
-# Création des boutons pour déplacer les yeux
-Btn_Haut = Button(fenetre, text="↑", command=deplacer_yeux_haut)
-Btn_Haut.config(bg='sky blue', fg='white', height=1, width=5)
-Btn_Haut.place(x=480, y=140)
 
-Btn_Bas = Button(fenetre, text=" ↓", command=deplacer_yeux_bas)
-Btn_Bas.config(bg='sky blue', fg='white', height=1, width=5)
-Btn_Bas.place(x=480, y=170)
+#=============================================================================#
+                        # STRUCTURE DU PLATEAU #
+#=============================================================================#
 
-Btn_Droite = Button(fenetre, text="→", command=deplacer_yeux_droite)
-Btn_Droite.config(bg='sky blue', fg='white', height=3, width=5)
-Btn_Droite.place(x=540, y=140)
+# 0: Case vide, 1: Pions noire, 2: Pions rouge
+plateau = [
+    [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [2, 0, 2, 0, 2, 0, 2, 0, 2, 0],
+    [0, 2, 0, 2, 0, 2, 0, 2, 0, 2],
+    [2, 0, 2, 0, 2, 0, 2, 0, 2, 0],
+    [0, 2, 0, 2, 0, 2, 0, 2, 0, 2]
+]
 
-Btn_Gauche = Button(fenetre, text="←", command=deplacer_yeux_gauche)
-Btn_Gauche.config(bg='sky blue', fg='white', height=3, width=5)
-Btn_Gauche.place(x=420, y=140)
+#=============================================================================#
+                            # BASCULE J1 à J2 #
+#=============================================================================#
 
-Btn_Ecarter = Button(fenetre, text="↔", command=ecarter_yeux)
-Btn_Ecarter.config(bg='green', fg='white', width=10, height=1)
-Btn_Ecarter.place(x=420, y=200)
+joueur_actuel = 2  # 1 pour rouge, 2 pour noir
 
-Btn_Rapprocher = Button(fenetre, text="⇄", command=rapprocher_yeux)
-Btn_Rapprocher.config(bg='green', fg='white', width=10, height=1)
-Btn_Rapprocher.place(x=507, y=200)
+def gestion_tour_par_joueur(fonction_originale):
+    def wrapper(x, y):
+        global joueur_actuel
+        ligne = int((300 - y) // 60)
+        colonne = int((x + 300) // 60)
 
-# Création d'un widget pour les accessoires
-Forme_Accessoire = Label(fenetre)
-Forme_Accessoire.config(bg='black', text='Modification Accessoire', fg='white', width=23, height=1, font=('Arial', 9, 'bold'))
-Forme_Accessoire.place(x=620, y=110)
+        # Ne pas interférer si le clic est hors plateau
+        if ligne not in range(10) or colonne not in range(10):
+            return fonction_originale(x, y)
 
-# Création d'un bouton pour changer les accessoires
-Btn_Accessoire = Button(fenetre, text='1', font=('times', 20, 'bold'), command=Changer_Accessoire)
-Btn_Accessoire.config(bg='purple', fg='white', height=1, width=4)
-Btn_Accessoire.place(x=620, y=140)
-# Création d'un bouton pour réinitialiser l'avatar
-Btn_Reinitialiser = Button(fenetre, text='⟳', bg='purple', font=('times', 20, 'bold'), command=reinitialiser)
-Btn_Reinitialiser.config(fg='white', height=1, width=4)
-Btn_Reinitialiser.place(x=711, y=140)
-# Création d'un bouton pour changer la forme de la tête
-Btn_Forme_Tete = Button(fenetre, text='Change la forme tête', command=changer_forme_tete)
-Btn_Forme_Tete.config(bg='purple', fg='white', width=22, height=1)
-Btn_Forme_Tete.place(x=620, y=200)
-# Création d'un widget pour les restes des boutons
-Autre_Modification = Label(fenetre)
-Autre_Modification.config(bg='black', text='Autres modification', fg='white', width=23, height=1, font=('Arial', 9, 'bold'))
-Autre_Modification.place(x=530, y=240)
-# Créer le bouton pour changer la couleur de fond du canevas de l'avatar
-Btn_changer_couleur_avatar = Button(fenetre, text="Changer Couleur BG Avatar", command=changer_couleur_bg_avatar)
-Btn_changer_couleur_avatar.config(bg="cyan", width=22, height=1)
-Btn_changer_couleur_avatar.place(x=420, y=270)
-# Créer le bouton pour changer la couleur des yeux
-Btn_Couleur_Yeux = Button(fenetre, text="Changer Couleur Yeux", command=changer_couleur_yeux)
-Btn_Couleur_Yeux.config(bg="cyan", width=22, height=1)
-Btn_Couleur_Yeux.place(x=620, y=270)
-# Créer le bouton pour changer la forme de la bouche
-Btn_Forme_Bouche = Button(fenetre, text='Changer la forme bouche', command=changer_forme_bouche)
-Btn_Forme_Bouche.config(bg='cyan', width=22, height=1)
-Btn_Forme_Bouche.place(x=620, y=310)
+        pion = plateau[ligne][colonne]
 
-# Création d'un label qui indique l'utilisateur de nommé son avatar
-Texte = Label(fenetre, bg='pink', fg='black')
-Texte.config(text="Veillez nommé votre avatar", font=('Arial', 9, 'bold'))
-Texte.place(x=422, y=300)
-# Cette variable permet a l'utilisateur de saisir le nom de son avatar
-Entree = Entry()
-Entree.config(bg="cyan", fg='red', width=22, font=('Arial', 9, 'bold'))
-Entree.place(x=423, y=320)
-# Cette bouton a pour fontion d'exécuter la fontion "Afficher_Nom_Avatar" qui affiche le nom de l'avatar
-Btn_Valider = Button(fenetre, text="Valider votre nom")
-Btn_Valider.config(bg='red', width=23, height=1, command= Afficher_Nom_Avatar)
-Btn_Valider.place(x=420, y=350)
+        # Si c'est à toi de jouer (le pion appartient au joueur actuel ou une case vide après sélection)
+        if (case_selectionnee is None and pion in ([joueur_actuel, joueur_actuel + 2])) or (case_selectionnee is not None):
+            # Appeler la vraie fonction
+            fonction_originale(x, y)
 
-# Création du bouton pour changer la forme des yeux
-Btn_Forme_Yeux = Button(fenetre, text='Change la forme des yeux', command=changer_forme_yeux)
-Btn_Forme_Yeux.config(bg='orange', fg='white', width=23, height=1)
-Btn_Forme_Yeux.place(x=620, y=350)
+            # Si le déplacement a bien eu lieu (case_selectionnee remise à None), on change de tour
+            if case_selectionnee is None:
+                joueur_actuel = 2 if joueur_actuel == 1 else 1
+                print("➡️ Au tour du joueur", joueur_actuel, 'Noir' if joueur_actuel == 1 else 'Rouge')
+        else:
+            print("❌ Ce n'est pas à vous de jouer ! C'est au joueur", joueur_actuel)
+    return wrapper
 
-# Placement initial des éléments de l'avatar
-Tete = canevas.create_oval(100, 100, 300, 300, fill="pink")
-Oeil_G = canevas.create_oval(130, 150, 170, 210, fill="blue")
-Oeil_D = canevas.create_oval(230, 150, 270, 210, fill="blue")
-Sourcil_G = canevas.create_line(140, 120, 170, 120, width=5, fill="black")
-Sourcil_D = canevas.create_line(230, 120, 260, 120, width=5, fill="black")
-Bouche = canevas.create_rectangle(160, 260, 240, 280, fill="purple")
 
-# Lancement de la boucle principale
-fenetre.mainloop()
+#=============================================================================#
+                        # SAUVEGARDE DE JEU  #
+#=============================================================================#
+# Connexion à la base de données (ou création si elle n'existe pas)
+"""connexion = sqlite3.connect('jeu_dames.db')
+cursor = connexion.cursor()
+
+
+# Création d'une table
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY,
+    PLATEAU TEXT NOT NULL,
+    TOUR_JOUEUR TEXT NOT NULL
+)
+''')
+
+sauvegarde_plateau = str(plateau)
+cursor.execute('INSERT INTO users (PLATEAU, TOUR_JOUEUR) VALUES (?, ?)', (sauvegarde_plateau, " 1" ))
+
+# Validation des modifications
+connexion.commit()"""
+
+
+
+#=============================================================================#
+                        # EVENEMENTS UTILISATEUR #
+#=============================================================================#
+deplacement_pion = gestion_tour_par_joueur(deplacement_pion)
+onscreenclick(deplacement_pion)
+onkeypress(bye, "Escape")
+listen()
+
+done()
+
