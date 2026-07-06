@@ -1,0 +1,1 @@
+Site vitrine responsive pour un hôtel fictif, conçu en équipe (HTML5/CSS3/JS + Bootstrap). Architecture multi-pages, 404 personnalisée, respect strict d'un cahier des charges. Premier projet collaboratif : travail en équipe, gestion de version en groupe, et sens du détail sur le front-end.
